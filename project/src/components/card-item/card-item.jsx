@@ -1,26 +1,29 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import offerProp from '../app/offer.prop';
 import {getRating} from '../../utils';
 import {generatePath, Link} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import {AppRoute, CardType} from '../../const';
 
 function CardItem(props) {
-  const {offer} = props;
+  const {offer, typeCard = CardType.MAIN} = props;
   const {id, isPremium, rating, isFavorite, previewImage, price, type, title} = offer;
+  const imgPreviewWidth = typeCard === CardType.FAVORITES ? '150' : '260';
+  const imgPreviewHeight = typeCard === CardType.FAVORITES ? '110' : '200';
 
   return (
-    <article className="cities__place-card place-card">
+    <article className={`${typeCard === CardType.FAVORITES ? `${typeCard}__card` : `${typeCard}__place-card`} place-card`}>
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${typeCard}__image-wrapper place-card__image-wrapper`}>
         <Link to={{pathname: generatePath(AppRoute.ROOM, {id})}}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt={title} />
+          <img className="place-card__image" src={previewImage} width={imgPreviewWidth} height={imgPreviewHeight} alt={title} />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className={`${typeCard === CardType.FAVORITES && 'favorites__card-info'}  place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -50,6 +53,7 @@ function CardItem(props) {
 
 CardItem.propTypes = {
   offer: offerProp,
+  typeCard: PropTypes.string,
 };
 
 export default CardItem;

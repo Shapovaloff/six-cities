@@ -21,7 +21,9 @@ function App(props) {
           />
         </Route>
         <Route exact path={AppRoute.FAVORITES}>
-          <FavoritesPage />
+          <FavoritesPage
+            offers={offers}
+          />
         </Route>
         <Route exact path={AppRoute.SIGN_IN}>
           <SignInPage />
