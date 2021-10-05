@@ -7,16 +7,17 @@ import FavoritesPage from '../favorites-page/favorites-page';
 import SignInPage from '../sign-in-page/sign-in-page';
 import RoomPage from '../room-page/room-page';
 import NotFoundPage from '../not-found-page/not-found-page';
+import offerProp from './offer.prop';
 
 function App(props) {
-  const {offersCount} = props;
+  const {offers} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.MAIN}>
           <MainPage
-            offersCount={offersCount}
+            offers={offers}
           />
         </Route>
         <Route exact path={AppRoute.FAVORITES}>
@@ -37,7 +38,7 @@ function App(props) {
 }
 
 App.propTypes = {
-  offersCount: PropTypes.number.isRequired,
+  offers: PropTypes.arrayOf(offerProp).isRequired,
 };
 
 export default App;

@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CardItem from '../card-item/card-item';
 import Header from '../header/header';
+import offerProp from '../app/offer.prop';
 
 function MainPage(props) {
-  const {offersCount} = props;
-  const arrayOffers = new Array(offersCount).fill(false);
+  const {offers} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -70,8 +70,8 @@ function MainPage(props) {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {arrayOffers.map((item) => (
-                  <CardItem key={item} />
+                {offers.map((offer) => (
+                  <CardItem key={offer.id} offer={offer} />
                 ))}
               </div>
             </section>
@@ -86,7 +86,7 @@ function MainPage(props) {
 }
 
 MainPage.propTypes = {
-  offersCount: PropTypes.number.isRequired,
+  offers: PropTypes.arrayOf(offerProp).isRequired,
 };
 
 export default MainPage;
