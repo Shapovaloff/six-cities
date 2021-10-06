@@ -11,6 +11,7 @@ import ReviewsList from '../reviews-list/reviews-list';
 import ReviewsForm from '../reviews-form/reviews-form';
 import CardItem from '../card-item/card-item';
 import {CardType} from '../../const';
+import Map from '../map/map';
 
 function RoomPage(props) {
   const {offers, reviews} = props;
@@ -89,7 +90,9 @@ function RoomPage(props) {
               </section>
             </div>
           </div>
-          <section className="property__map map"/>
+          <section className="property__map map">
+            <Map city={offer.city} offers={[offer, ...nearOffers]} />
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
