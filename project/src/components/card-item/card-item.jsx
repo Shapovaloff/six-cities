@@ -12,7 +12,7 @@ function CardItem(props) {
   const imgPreviewHeight = typeCard === CardType.FAVORITES ? '110' : '200';
 
   return (
-    <article className={`${typeCard === CardType.FAVORITES ? `${typeCard}__card` : `${typeCard}__place-card`} place-card`}>
+    <article className={`${typeCard === CardType.MAIN ? `${typeCard}__place-card` : `${typeCard}__card`} place-card`}>
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
