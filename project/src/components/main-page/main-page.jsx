@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CardItem from '../card-item/card-item';
 import Header from '../header/header';
 import offerProp from '../app/offer.prop';
-import Map from '../map/map';
 import LocationsList from '../locations-list/locations-list';
 import {Locations} from '../../const';
-import SortForm from '../sort-form/sort-form';
 import {connect} from 'react-redux';
+import MainCities from '../main-cities/main-cities';
+import MainCitiesEmpty from '../main-cities-empty/main-cities-empty';
 
 function MainPage(props) {
   const {offers, city} = props;
@@ -18,7 +17,7 @@ function MainPage(props) {
     <div className="page page--gray page--main">
       <Header />
 
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index ${filterOffers.length && 'page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -26,23 +25,7 @@ function MainPage(props) {
           </section>
         </div>
         <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
-              <SortForm />
-              <div className="cities__places-list places__list tabs__content">
-                {filterOffers.map((offer) => (
-                  <CardItem key={offer.id} offer={offer} />
-                ))}
-              </div>
-            </section>
-            <div className="cities__right-section">
-              <section className="cities__map map">
-                <Map city={filterOffers[0].city} offers={filterOffers} />
-              </section>
-            </div>
-          </div>
+          {filterOffers.length ? <MainCities offers={filterOffers} city={city} /> : <MainCitiesEmpty />}
         </div>
       </main>
     </div>
