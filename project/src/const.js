@@ -22,6 +22,22 @@ export const MapConfig = {
   ATTRIBUTION: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 };
 
+export const Locations = {
+  PARIS: 'Paris',
+  COLOGNE: 'Cologne',
+  BRUSSELS: 'Brussels',
+  AMSTERDAM: 'Amsterdam',
+  HAMBURG: 'Hamburg',
+  DUSSELDORF: 'Dusseldorf',
+};
+
+export const SORTS = [
+  'Popular',
+  'Price: low to high',
+  'Price: high to low',
+  'Top rated first',
+];
+
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
 export const MAX_RATING = 5;
