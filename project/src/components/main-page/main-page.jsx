@@ -7,11 +7,13 @@ import {Locations} from '../../const';
 import {connect} from 'react-redux';
 import MainCities from '../main-cities/main-cities';
 import MainCitiesEmpty from '../main-cities-empty/main-cities-empty';
+import {getSortOffers} from '../../utils';
 
 function MainPage(props) {
-  const {offers, city} = props;
+  const {offers, city, activeSort} = props;
   const locations = Object.values(Locations);
   const filterOffers = offers.filter((offer) => offer.city.name === city);
+  const sortOffers = getSortOffers(activeSort, filterOffers);
 
   return (
     <div className="page page--gray page--main">
@@ -25,7 +27,7 @@ function MainPage(props) {
           </section>
         </div>
         <div className="cities">
-          {filterOffers.length ? <MainCities offers={filterOffers} city={city} /> : <MainCitiesEmpty />}
+          {filterOffers.length ? <MainCities offers={sortOffers} city={city} /> : <MainCitiesEmpty />}
         </div>
       </main>
     </div>
@@ -35,11 +37,13 @@ function MainPage(props) {
 MainPage.propTypes = {
   offers: PropTypes.arrayOf(offerProp).isRequired,
   city: PropTypes.string.isRequired,
+  activeSort: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   offers: state.offers,
   city: state.city,
+  activeSort: state.activeSort,
 });
 
 export default connect(mapStateToProps, null)(MainPage);

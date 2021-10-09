@@ -38,6 +38,12 @@ export const SORTS = [
   'Top rated first',
 ];
 
+export const SortOptions = {
+  PRICE_LOW_FIRST: 'Price: low to high',
+  PRICE_HIGH_FIRST: 'Price: high to low',
+  TOP_RATED_FIRST: 'Top rated first',
+};
+
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
 export const MAX_RATING = 5;
