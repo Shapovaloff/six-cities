@@ -7,6 +7,7 @@ import Map from '../map/map';
 import LocationsList from '../locations-list/locations-list';
 import {Locations} from '../../const';
 import SortForm from '../sort-form/sort-form';
+import {connect} from 'react-redux';
 
 function MainPage(props) {
   const {offers} = props;
@@ -51,4 +52,8 @@ MainPage.propTypes = {
   offers: PropTypes.arrayOf(offerProp).isRequired,
 };
 
-export default MainPage;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+})
+
+export default connect(mapStateToProps, null)(MainPage);

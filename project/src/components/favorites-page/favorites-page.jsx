@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import offerProp from '../app/offer.prop';
 import Header from '../header/header';
 import FavoritesList from '../favorites-list/favorites-list';
+import {connect} from 'react-redux';
+import {AppRoute} from '../../const';
+import {Link} from 'react-router-dom';
 
 function FavoritesPage(props) {
   const {offers} = props;
@@ -27,9 +30,9 @@ function FavoritesPage(props) {
         </div>
       </main>
       <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
+        <Link className="footer__logo-link" to={AppRoute.MAIN}>
           <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
-        </a>
+        </Link>
       </footer>
     </div>
   );
@@ -39,4 +42,8 @@ FavoritesPage.propTypes = {
   offers: PropTypes.arrayOf(offerProp).isRequired,
 };
 
-export default FavoritesPage;
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+})
+
+export default connect(mapStateToProps, null)(FavoritesPage);

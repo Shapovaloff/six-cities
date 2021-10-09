@@ -10,30 +10,21 @@ import NotFoundPage from '../not-found-page/not-found-page';
 import offerProp from './offer.prop';
 import reviewProp from '../app/review.prop';
 
-function App(props) {
-  const {offers, reviews} = props;
-
+function App() {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.MAIN}>
-          <MainPage
-            offers={offers}
-          />
+          <MainPage />
         </Route>
         <Route exact path={AppRoute.FAVORITES}>
-          <FavoritesPage
-            offers={offers}
-          />
+          <FavoritesPage />
         </Route>
         <Route exact path={AppRoute.SIGN_IN}>
           <SignInPage />
         </Route>
         <Route exact path={AppRoute.ROOM}>
-          <RoomPage
-            offers={offers}
-            reviews={reviews}
-          />
+          <RoomPage />
         </Route>
         <Route>
           <NotFoundPage />
