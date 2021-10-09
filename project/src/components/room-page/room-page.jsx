@@ -118,6 +118,6 @@ RoomPage.propTypes = {
 const mapStateToProps = (state) => ({
   offers: state.offers,
   reviews: state.reviews,
-})
+});
 
 export default connect(mapStateToProps, null)(RoomPage);

@@ -54,6 +54,6 @@ MainPage.propTypes = {
 
 const mapStateToProps = (state) => ({
   offers: state.offers,
-})
+});
 
 export default connect(mapStateToProps, null)(MainPage);
