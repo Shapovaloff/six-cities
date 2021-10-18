@@ -39,7 +39,6 @@ export const fetchSetFavorites = ({id, status}) => (dispatch, _getState, api) =>
     .then(({data}) => dispatch(setFavoritesItem(convertSnakeToCamelCase(data))))
 );
 
-
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))

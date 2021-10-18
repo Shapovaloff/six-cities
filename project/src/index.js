@@ -4,13 +4,13 @@ import App from './components/app/app';
 import {createAPI} from './services/api';
 import {reducer} from './store/reducer';
 import {Provider} from 'react-redux';
-import {ActionCreator} from './store/action';
+import {requireAuthorization} from './store/action';
 import {AuthorizationStatus} from './const';
 import {checkAuth, fetchFavorites, fetchOfferList} from './store/api-actions';
 import {configureStore} from '@reduxjs/toolkit';
 import {redirect} from './middlewares/redirect';
 
-const api = createAPI(() => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)));
+const api = createAPI(() => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH)));
 
 const store = configureStore({
   reducer: reducer,

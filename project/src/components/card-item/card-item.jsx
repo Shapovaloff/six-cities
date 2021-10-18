@@ -4,7 +4,7 @@ import offerProp from '../app/offer.prop';
 import {getRating} from '../../utils';
 import {generatePath, Link} from 'react-router-dom';
 import {AppRoute, buttonType, CardType} from '../../const';
-import {ActionCreator} from '../../store/action';
+import {changeActiveCard} from '../../store/action';
 import {connect} from 'react-redux';
 import FavoritesButton from '../favorites-button/favorites-button';
 
@@ -61,7 +61,7 @@ CardItem.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   changeCard(id) {
-    dispatch(ActionCreator.changeActiveCard(id));
+    dispatch(changeActiveCard(id));
   },
 });
 

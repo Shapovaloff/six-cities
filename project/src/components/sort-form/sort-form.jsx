@@ -2,7 +2,7 @@ import React, {useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import SortItem from '../sort-item/sort-item';
 import {SORTS} from '../../const';
-import {ActionCreator} from '../../store/action';
+import {changeActiveSort} from '../../store/action';
 import {connect} from 'react-redux';
 import useOutsideClick from '../../hooks/use-outside-click';
 
@@ -51,7 +51,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   changeSort(sort) {
-    dispatch(ActionCreator.changeActiveSort(sort));
+    dispatch(changeActiveSort(sort));
   },
 });
 

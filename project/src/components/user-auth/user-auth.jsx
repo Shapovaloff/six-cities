@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
-import {ActionCreator} from '../../store/action';
+import {logout} from '../../store/action';
 
-function UserAuth({userInfo, logout}) {
+function UserAuth({userInfo, logoutRoom}) {
   const  handleClick = () => {
-    logout();
+    logoutRoom();
   };
 
   return (
@@ -34,7 +34,7 @@ UserAuth.propTypes = {
     avatarUrl: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
   }).isRequired,
-  logout: PropTypes.func.isRequired,
+  logoutRoom: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -42,8 +42,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  logout: () => {
-    dispatch(ActionCreator.logout());
+  logoutRoom: () => {
+    dispatch(logout());
   },
 });
 
