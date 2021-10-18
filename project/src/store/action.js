@@ -14,56 +14,67 @@ export const ActionType = {
   REDIRECT_TO_ROUTE: 'ui/redirectToRoute',
 };
 
-export const ActionCreator = {
-  changeActiveCity: (city) => ({
-    type: ActionType.CHANGE_ACTIVE_CITY,
-    payload: city,
-  }),
-  changeActiveSort: (sort) => ({
-    type: ActionType.CHANGE_ACTIVE_SORT,
-    payload: sort,
-  }),
-  changeActiveCard: (id) => ({
-    type: ActionType.CHANGE_ACTIVE_CARD,
-    payload: id,
-  }),
-  loadOffers: (offers) => ({
-    type: ActionType.LOAD_OFFERS,
-    payload: offers,
-  }),
-  loadOffer: (offer) => ({
-    type: ActionType.LOAD_OFFER,
-    payload: offer,
-  }),
-  loadOffersNearby: (offers) => ({
-    type: ActionType.LOAD_OFFERS_NEARBY,
-    payload: offers,
-  }),
-  loadReviews: (reviews) => ({
-    type: ActionType.LOAD_REVIEWS,
-    payload: reviews,
-  }),
-  loadFavorites: (favorites) => ({
-    type: ActionType.LOAD_FAVORITES,
-    payload: favorites,
-  }),
-  setFavoritesItem: (favoritesItem) => ({
-    type: ActionType.SET_FAVORITES_ITEM,
-    payload: favoritesItem,
-  }),
-  requireAuthorization: (status) => ({
-    type: ActionType.REQUIRED_AUTHORIZATION,
-    payload: status,
-  }),
-  logout: () => ({
-    type: ActionType.LOGOUT,
-  }),
-  loadUserInfo: (info) => ({
-    type: ActionType.LOAD_USER_INFO,
-    payload: info,
-  }),
-  redirectToRoute: (route) => ({
-    type: ActionType.REDIRECT_TO_ROUTE,
-    payload: route,
-  }),
-};
+export const changeActiveCity = (city) => ({
+  type: ActionType.CHANGE_ACTIVE_CITY,
+  payload: city,
+});
+
+export const changeActiveSort = (sort) => ({
+  type: ActionType.CHANGE_ACTIVE_SORT,
+  payload: sort,
+});
+
+export const changeActiveCard = (id) => ({
+  type: ActionType.CHANGE_ACTIVE_CARD,
+  payload: id,
+});
+
+export const loadOffers = (offers) => ({
+  type: ActionType.LOAD_OFFERS,
+  payload: offers,
+});
+
+export const loadOffer = (offer) => ({
+  type: ActionType.LOAD_OFFER,
+  payload: offer,
+});
+
+export const loadOffersNearby = (offers) => ({
+  type: ActionType.LOAD_OFFERS_NEARBY,
+  payload: offers,
+});
+
+export const loadReviews = (reviews) => ({
+  type: ActionType.LOAD_REVIEWS,
+  payload: reviews,
+});
+
+export const loadFavorites = (favorites) => ({
+  type: ActionType.LOAD_FAVORITES,
+  payload: favorites,
+});
+
+export const setFavoritesItem = (favoritesItem) => ({
+  type: ActionType.SET_FAVORITES_ITEM,
+  payload: favoritesItem,
+});
+
+export const requireAuthorization = (status) => ({
+  type: ActionType.REQUIRED_AUTHORIZATION,
+  payload: status,
+});
+
+export const logout = () => ({
+  type: ActionType.LOGOUT,
+});
+
+export const loadUserInfo = (info) => ({
+  type: ActionType.LOAD_USER_INFO,
+  payload: info,
+});
+
+export const redirectToRoute = (route) => ({
+  type: ActionType.REDIRECT_TO_ROUTE,
+  payload: route,
+});
+
