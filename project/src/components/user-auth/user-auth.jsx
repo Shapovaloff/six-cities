@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {logout} from '../../store/action';
+import {getUser} from '../../store/ui/selectors';
 
 function UserAuth({userInfo, logoutRoom}) {
   const  handleClick = () => {
@@ -37,8 +38,8 @@ UserAuth.propTypes = {
   logoutRoom: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({UI}) => ({
-  userInfo: UI.user,
+const mapStateToProps = (state) => ({
+  userInfo: getUser(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

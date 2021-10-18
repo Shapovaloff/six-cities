@@ -8,6 +8,7 @@ import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import FavoritesListEmpty from '../favorites-list-empty/favorites-list-empty';
 import LoadingWrapper from '../loading-wrapper/loading-wrapper';
+import {getFavorites, getIsDataLoadedFavorites} from '../../store/data/selectors';
 
 function FavoritesPage(props) {
   const {favorites, isDataLoadedFavorites} = props;
@@ -47,9 +48,9 @@ FavoritesPage.propTypes = {
   isDataLoadedFavorites: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  favorites: DATA.favorites,
-  isDataLoadedFavorites: DATA.isDataLoadedFavorites,
+const mapStateToProps = (state) => ({
+  favorites: getFavorites(state),
+  isDataLoadedFavorites: getIsDataLoadedFavorites(state),
 });
 
 export default connect(mapStateToProps, null)(FavoritesPage);

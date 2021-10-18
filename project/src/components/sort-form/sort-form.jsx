@@ -5,6 +5,7 @@ import {SORTS} from '../../const';
 import {changeActiveSort} from '../../store/action';
 import {connect} from 'react-redux';
 import useOutsideClick from '../../hooks/use-outside-click';
+import {getActiveSort} from '../../store/ui/selectors';
 
 function SortForm(props) {
   const {activeSort, changeSort} = props;
@@ -45,8 +46,8 @@ SortForm.propTypes = {
   changeSort: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({UI}) => ({
-  activeSort: UI.activeSort,
+const mapStateToProps = (state) => ({
+  activeSort: getActiveSort(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

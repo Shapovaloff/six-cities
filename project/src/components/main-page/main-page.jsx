@@ -9,6 +9,8 @@ import MainCities from '../main-cities/main-cities';
 import MainCitiesEmpty from '../main-cities-empty/main-cities-empty';
 import {getSortOffers} from '../../utils';
 import LoadingWrapper from '../loading-wrapper/loading-wrapper';
+import {getIsDataLoadedOffers, getOffers} from '../../store/data/selectors';
+import {getActiveSort, getCity} from '../../store/ui/selectors';
 
 function MainPage(props) {
   const {offers, city, activeSort, isDataLoadedOffers} = props;
@@ -44,11 +46,11 @@ MainPage.propTypes = {
   isDataLoadedOffers: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = ({DATA, UI}) => ({
-  offers: DATA.offers,
-  city: UI.city,
-  activeSort: UI.activeSort,
-  isDataLoadedOffers: DATA.isDataLoadedOffers,
+const mapStateToProps = (state) => ({
+  offers: getOffers(state),
+  city: getCity(state),
+  activeSort: getActiveSort(state),
+  isDataLoadedOffers: getIsDataLoadedOffers(state),
 });
 
 export default connect(mapStateToProps, null)(MainPage);

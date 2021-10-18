@@ -17,6 +17,13 @@ import {fetchOffer, fetchOffersNearby, fetchReviews} from '../../store/api-actio
 import LoadingWrapper from '../loading-wrapper/loading-wrapper';
 import NotFoundPage from '../not-found-page/not-found-page';
 import FavoritesButton from '../favorites-button/favorites-button';
+import {
+  getIsDataLoadedOffer,
+  getIsDataLoadedOffersNearby,
+  getIsDataLoadedReviews,
+  getOffer, getOffersNearby,
+  getReviews
+} from '../../store/data/selectors';
 
 function RoomPage(props) {
   const {reviews, offer = {}, offersNearby = [], loadReviews, loadOffer, loadOffersNearby, isDataLoadedOffer, isDataLoadedReviews, isDataLoadedOffersNearby} = props;
@@ -130,13 +137,13 @@ RoomPage.propTypes = {
   loadOffersNearby: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  reviews: DATA.reviews,
-  offer: DATA.offer,
-  isDataLoadedOffer: DATA.isDataLoadedOffer,
-  isDataLoadedOffersNearby: DATA.isDataLoadedOffersNearby,
-  isDataLoadedReviews: DATA.isDataLoadedReviews,
-  offersNearby: DATA.offersNearby,
+const mapStateToProps = (state) => ({
+  offer: getOffer(state),
+  offersNearby: getOffersNearby(state),
+  reviews: getReviews(state),
+  isDataLoadedOffer: getIsDataLoadedOffer(state),
+  isDataLoadedOffersNearby: getIsDataLoadedOffersNearby(state),
+  isDataLoadedReviews: getIsDataLoadedReviews(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

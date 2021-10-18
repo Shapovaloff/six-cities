@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../const';
 import {connect} from 'react-redux';
+import {getActiveCard} from '../../store/ui/selectors';
 
 const defaultCustomIcon = leaflet.icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -73,8 +74,8 @@ Map.propTypes = {
   activeCard: PropTypes.number,
 };
 
-const mapStateToProps = ({UI}) => ({
-  activeCard: UI.activeCard,
+const mapStateToProps = (state) => ({
+  activeCard: getActiveCard(state),
 });
 
 export default connect(mapStateToProps)(Map);

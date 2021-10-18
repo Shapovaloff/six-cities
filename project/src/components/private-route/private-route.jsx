@@ -4,6 +4,7 @@ import {AppRoute, AuthorizationStatus} from '../../const';
 import {connect} from 'react-redux';
 import LoadingWrapper from '../loading-wrapper/loading-wrapper';
 import {Redirect, Route} from 'react-router-dom';
+import {getAuthorizationStatus} from '../../store/user/selectors';
 
 function PrivateRoute(props) {
   const {authorizationStatus, render, path, exact, status = AuthorizationStatus.AUTH, redirect = AppRoute.SIGN_IN} = props;
@@ -30,8 +31,8 @@ PrivateRoute.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({USER}) => ({
-  authorizationStatus: USER.authorizationStatus,
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 export default  connect(mapStateToProps, null)(PrivateRoute);

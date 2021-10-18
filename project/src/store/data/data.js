@@ -6,9 +6,9 @@ const initialState = {
   offersNearby: [],
   reviews: [],
   favorites: [],
+  isDataLoadedOffer: false,
   isDataLoadedOffers: false,
   isDataLoadedOffersNearby: false,
-  isDataLoadedOffer: false,
   isDataLoadedReviews: false,
   isDataLoadedFavorites: false,
 };
