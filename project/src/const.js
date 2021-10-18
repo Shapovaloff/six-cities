@@ -11,6 +11,11 @@ export const CardType = {
   NEARBY: 'near-places',
 };
 
+export const buttonType = {
+  BIG: 'big',
+  SMALL: 'small',
+};
+
 export const DateConfig = {
   LOCALES: 'en-US',
   YEAR: 'numeric',
@@ -44,7 +49,23 @@ export const SortOptions = {
   TOP_RATED_FIRST: 'Top rated first',
 };
 
+export const AuthorizationStatus = {
+  AUTH: 'AUTH',
+  NO_AUTH: 'NO_AUTH',
+  UNKNOWN: 'UNKNOWN',
+};
+
+export const APIRoute = {
+  OFFERS: '/hotels',
+  OFFERS_NEARBY: '/nearby',
+  LOGIN: '/login',
+  LOGOUT: '/logout',
+  FAVORITES: '/favorite',
+  REVIEWS: '/comments',
+};
+
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
 export const MAX_RATING = 5;
 export const MAX_PERCENT = 100;
+export const REMOVE_FAVORITES_COUNT = 1;

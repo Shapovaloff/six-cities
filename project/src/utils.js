@@ -1,4 +1,4 @@
-import {DateConfig, MAX_PERCENT, MAX_RATING, SortOptions} from './const';
+import {AuthorizationStatus, DateConfig, MAX_PERCENT, MAX_RATING, SortOptions} from './const';
 
 export const getRating = (rating) => `${(rating / MAX_RATING) * MAX_PERCENT}%`;
 
@@ -19,3 +19,10 @@ export const getSortOffers = (sort, offers) => {
       return offers;
   }
 };
+
+export const isCheckedAuth = (authorizationStatus) =>
+  authorizationStatus === AuthorizationStatus.UNKNOWN;
+
+export const convertSnakeToCamelCase = (data) => JSON.parse(JSON.stringify(data).replace(
+  /(_\w)\w+":/g, (match) => match[1].toUpperCase() + match.substring(2),
+));

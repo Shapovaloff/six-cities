@@ -8,9 +8,10 @@ import {connect} from 'react-redux';
 import MainCities from '../main-cities/main-cities';
 import MainCitiesEmpty from '../main-cities-empty/main-cities-empty';
 import {getSortOffers} from '../../utils';
+import LoadingWrapper from '../loading-wrapper/loading-wrapper';
 
 function MainPage(props) {
-  const {offers, city, activeSort} = props;
+  const {offers, city, activeSort, isDataLoadedOffers} = props;
   const locations = Object.values(Locations);
   const filterOffers = offers.filter((offer) => offer.city.name === city);
   const sortOffers = getSortOffers(activeSort, filterOffers);
@@ -26,9 +27,11 @@ function MainPage(props) {
             <LocationsList locations={locations} />
           </section>
         </div>
-        <div className="cities">
-          {filterOffers.length ? <MainCities offers={sortOffers} city={city} /> : <MainCitiesEmpty />}
-        </div>
+        <LoadingWrapper isLoad={isDataLoadedOffers}>
+          <div className="cities">
+            {filterOffers.length ? <MainCities offers={sortOffers} city={city} /> : <MainCitiesEmpty />}
+          </div>
+        </LoadingWrapper>
       </main>
     </div>
   );
@@ -38,12 +41,14 @@ MainPage.propTypes = {
   offers: PropTypes.arrayOf(offerProp).isRequired,
   city: PropTypes.string.isRequired,
   activeSort: PropTypes.string.isRequired,
+  isDataLoadedOffers: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   offers: state.offers,
   city: state.city,
   activeSort: state.activeSort,
+  isDataLoadedOffers: state.isDataLoadedOffers,
 });
 
 export default connect(mapStateToProps, null)(MainPage);
