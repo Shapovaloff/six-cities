@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import RatingItem from '../rating-item/rating-item';
 
 const RATING = [5, 4, 3, 2, 1];
@@ -13,9 +12,5 @@ function RatingList() {
     </div>
   );
 }
-//
-// RatingList.propTypes = {
-//
-// };
 
 export default RatingList;

@@ -47,9 +47,9 @@ FavoritesPage.propTypes = {
   isDataLoadedFavorites: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  favorites: state.favorites,
-  isDataLoadedFavorites: state.isDataLoadedFavorites,
+const mapStateToProps = ({DATA}) => ({
+  favorites: DATA.favorites,
+  isDataLoadedFavorites: DATA.isDataLoadedFavorites,
 });
 
 export default connect(mapStateToProps, null)(FavoritesPage);

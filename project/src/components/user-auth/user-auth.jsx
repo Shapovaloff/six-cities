@@ -37,8 +37,8 @@ UserAuth.propTypes = {
   logoutRoom: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  userInfo: state.user,
+const mapStateToProps = ({UI}) => ({
+  userInfo: UI.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({

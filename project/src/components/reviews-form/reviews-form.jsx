@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import RatingList from '../rating-list/rating-list';
 
 function ReviewsForm() {
@@ -18,9 +17,5 @@ function ReviewsForm() {
     </form>
   );
 }
-
-// ReviewsForm.propTypes = {
-//
-// };
 
 export default ReviewsForm;

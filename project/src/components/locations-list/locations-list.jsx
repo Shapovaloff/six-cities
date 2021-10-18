@@ -31,8 +31,8 @@ LocationsList.propTypes = {
   changeCity: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  city: state.city,
+const mapStateToProps = ({UI}) => ({
+  city: UI.city,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
 import {createAPI} from './services/api';
-import {reducer} from './store/reducer';
 import rootReducer from './store/root-reducer';
 import {Provider} from 'react-redux';
 import {requireAuthorization} from './store/action';

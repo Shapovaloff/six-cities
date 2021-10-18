@@ -45,8 +45,8 @@ SortForm.propTypes = {
   changeSort: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  activeSort: state.activeSort,
+const mapStateToProps = ({UI}) => ({
+  activeSort: UI.activeSort,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -44,11 +44,11 @@ MainPage.propTypes = {
   isDataLoadedOffers: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  offers: state.offers,
-  city: state.city,
-  activeSort: state.activeSort,
-  isDataLoadedOffers: state.isDataLoadedOffers,
+const mapStateToProps = ({DATA, UI}) => ({
+  offers: DATA.offers,
+  city: UI.city,
+  activeSort: UI.activeSort,
+  isDataLoadedOffers: DATA.isDataLoadedOffers,
 });
 
 export default connect(mapStateToProps, null)(MainPage);
