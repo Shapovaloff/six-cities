@@ -1,5 +1,6 @@
 import {Locations, SORTS} from '../../const';
-import {ActionType} from '../action';
+import {changeActiveCard, changeActiveCity, changeActiveSort, loadUserInfo} from '../action';
+import {createReducer} from '@reduxjs/toolkit';
 
 const initialState = {
   city: Locations.PARIS,
@@ -8,31 +9,21 @@ const initialState = {
   user: {},
 };
 
-const ui = (state = initialState, action) => {
-  switch (action.type) {
-    case ActionType.CHANGE_ACTIVE_CITY:
-      return {
-        ...state,
-        city: action.payload,
-      };
-    case ActionType.CHANGE_ACTIVE_SORT:
-      return {
-        ...state,
-        activeSort: action.payload,
-      };
-    case ActionType.CHANGE_ACTIVE_CARD:
-      return {
-        ...state,
-        activeCard: action.payload,
-      };
-    case ActionType.LOAD_USER_INFO:
-      return {
-        ...state,
-        user: action.payload,
-      };
-    default:
-      return state;
-  }
-}
+const ui = createReducer(initialState, (builder => {
+  builder
+    .addCase(changeActiveCity, (state, action) => {
+      state.city = action.payload;
+    })
+    .addCase(changeActiveSort, (state, action) => {
+      state.activeSort = action.payload;
+    })
+    .addCase(changeActiveCard, (state, action) => {
+      state.activeCard = action.payload;
+    })
+    .addCase(loadUserInfo, (state, action) => {
+      state.user = action.payload;
+    });
+}));
+
 
 export {ui};

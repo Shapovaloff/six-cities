@@ -1,4 +1,12 @@
-import {ActionType} from '../action';
+import {
+  loadFavorites,
+  loadOffer,
+  loadOffers,
+  loadOffersNearby,
+  loadReviews,
+  setFavoritesItem
+} from '../action';
+import {createReducer} from '@reduxjs/toolkit';
 
 const initialState = {
   offer: {},
@@ -13,49 +21,35 @@ const initialState = {
   isDataLoadedFavorites: false,
 };
 
-const data = (state = initialState, action) => {
-  switch (action.type) {
-    case ActionType.LOAD_OFFER:
-      return {
-        ...state,
-        offer: action.payload,
-        isDataLoadedOffer: true,
-      };
-    case ActionType.LOAD_OFFERS:
-      return {
-        ...state,
-        offers: action.payload,
-        isDataLoadedOffers: true,
-      };
-    case ActionType.LOAD_OFFERS_NEARBY:
-      return {
-        ...state,
-        offersNearby: action.payload,
-        isDataLoadedOffersNearby: true,
-      };
-    case ActionType.LOAD_REVIEWS:
-      return {
-        ...state,
-        reviews: action.payload,
-        isDataLoadedReviews: true,
-      };
-    case ActionType.LOAD_FAVORITES:
-      return {
-        ...state,
-        favorites: action.payload,
-        isDataLoadedFavorites: true,
-      };
-    case ActionType.SET_FAVORITES_ITEM:
-      return {
-        offers: state.offers.map((oldOffer) => oldOffer.id === action.payload.id ? action.payload : oldOffer),
-        offersNearby: state.offersNearby.map((oldOffer) => oldOffer.id === action.payload.id ? action.payload : oldOffer),
-        favorites: state.favorites.map((oldOffer) => oldOffer.id === action.payload.id ? action.payload : oldOffer),
-        offer: state.offer.id === action.payload.id ? action.payload : state.offer,
-      };
-    default:
-      return state;
-  }
-};
+const data = createReducer(initialState, (builder => {
+  builder
+    .addCase(loadOffer, (state, action) => {
+      state.offer = action.payload;
+      state.isDataLoadedOffer = true;
+    })
+    .addCase(loadOffers, (state, action) => {
+      state.isDataLoadedOffers = true;
+      state.offers = action.payload;
+    })
+    .addCase(loadOffersNearby, (state, action) => {
+      state.isDataLoadedOffersNearby = true;
+      state.offersNearby = action.payload;
+    })
+    .addCase(loadReviews, (state, action) => {
+      state.isDataLoadedReviews = true;
+      state.reviews = action.payload;
+    })
+    .addCase(loadFavorites, (state, action) => {
+      state.isDataLoadedFavorites = true;
+      state.favorites = action.payload;
+    })
+    .addCase(setFavoritesItem, (state, action) => {
+      state.offers = state.offers.map((oldOffer) => oldOffer.id === action.payload.id ? action.payload : oldOffer);
+      state.offersNearby = state.offersNearby.map((oldOffer) => oldOffer.id === action.payload.id ? action.payload : oldOffer);
+      state.favorites = state.favorites.map((oldOffer) => oldOffer.id === action.payload.id ? action.payload : oldOffer);
+      state.offer = state.offer.id === action.payload.id ? action.payload : state.offer;
+    });
+}));
 
 export {data};
 

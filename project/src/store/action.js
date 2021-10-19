@@ -1,3 +1,5 @@
+import {createAction} from '@reduxjs/toolkit';
+
 export const ActionType = {
   CHANGE_ACTIVE_CITY: 'ui/changeActiveCity',
   CHANGE_ACTIVE_SORT: 'ui/changeActiveSort',
@@ -14,67 +16,53 @@ export const ActionType = {
   REDIRECT_TO_ROUTE: 'ui/redirectToRoute',
 };
 
-export const changeActiveCity = (city) => ({
-  type: ActionType.CHANGE_ACTIVE_CITY,
+export const changeActiveCity = createAction(ActionType.CHANGE_ACTIVE_CITY, (city) => ({
   payload: city,
-});
+}));
 
-export const changeActiveSort = (sort) => ({
-  type: ActionType.CHANGE_ACTIVE_SORT,
+export const changeActiveSort = createAction(ActionType.CHANGE_ACTIVE_SORT, (sort) => ({
   payload: sort,
-});
+}));
 
-export const changeActiveCard = (id) => ({
-  type: ActionType.CHANGE_ACTIVE_CARD,
+export const changeActiveCard = createAction(ActionType.CHANGE_ACTIVE_CARD, (id) => ({
   payload: id,
-});
+}));
 
-export const loadOffers = (offers) => ({
-  type: ActionType.LOAD_OFFERS,
-  payload: offers,
-});
-
-export const loadOffer = (offer) => ({
-  type: ActionType.LOAD_OFFER,
+export const loadOffer = createAction(ActionType.LOAD_OFFER, (offer) => ({
   payload: offer,
-});
+}));
 
-export const loadOffersNearby = (offers) => ({
-  type: ActionType.LOAD_OFFERS_NEARBY,
+export const loadOffers = createAction(ActionType.LOAD_OFFERS, (offers) => ({
   payload: offers,
-});
+}));
 
-export const loadReviews = (reviews) => ({
-  type: ActionType.LOAD_REVIEWS,
+export const loadOffersNearby = createAction(ActionType.LOAD_OFFERS_NEARBY, (offers) => ({
+  payload: offers,
+}));
+
+export const loadReviews = createAction(ActionType.LOAD_REVIEWS, (reviews) => ({
   payload: reviews,
-});
+}));
 
-export const loadFavorites = (favorites) => ({
-  type: ActionType.LOAD_FAVORITES,
+export const loadFavorites = createAction(ActionType.LOAD_FAVORITES, (favorites) => ({
   payload: favorites,
-});
+}));
 
-export const setFavoritesItem = (favoritesItem) => ({
-  type: ActionType.SET_FAVORITES_ITEM,
+export const setFavoritesItem = createAction(ActionType.SET_FAVORITES_ITEM, (favoritesItem) => ({
   payload: favoritesItem,
-});
+}));
 
-export const requireAuthorization = (status) => ({
-  type: ActionType.REQUIRED_AUTHORIZATION,
+export const requireAuthorization = createAction(ActionType.REQUIRED_AUTHORIZATION, (status) => ({
   payload: status,
-});
+}));
 
-export const logout = () => ({
-  type: ActionType.LOGOUT,
-});
+export const logout = createAction(ActionType.LOGOUT);
 
-export const loadUserInfo = (info) => ({
-  type: ActionType.LOAD_USER_INFO,
+export const loadUserInfo = createAction(ActionType.LOAD_USER_INFO, (info) => ({
   payload: info,
-});
+}));
 
-export const redirectToRoute = (route) => ({
-  type: ActionType.REDIRECT_TO_ROUTE,
+export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (route) => ({
   payload: route,
-});
+}));
 
