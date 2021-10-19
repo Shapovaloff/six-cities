@@ -1,14 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {changeActiveSort} from '../../store/action';
+import {useDispatch, useSelector} from 'react-redux';
+import {getActiveSort} from '../../store/ui/selectors';
 
 function SortItem(props) {
-  const {sort, activeSort, changeSort, setIsActive} = props;
+  const activeSort = useSelector(getActiveSort);
+  const {sort, setIsActive} = props;
+  const dispatch = useDispatch();
 
   return (
     <li
-      className={`places__option ${activeSort && 'places__option--active'}`} tabIndex="0"
+      className={`places__option ${sort === activeSort && 'places__option--active'}`} tabIndex="0"
       onClick={() => {
-        changeSort(sort);
+        dispatch(changeActiveSort(sort))
         setIsActive(false);
       }}
     >
@@ -19,8 +24,6 @@ function SortItem(props) {
 
 SortItem.propTypes = {
   sort: PropTypes.string.isRequired,
-  activeSort: PropTypes.bool.isRequired,
-  changeSort: PropTypes.func.isRequired,
   setIsActive: PropTypes.func.isRequired,
 };
 

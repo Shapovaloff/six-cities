@@ -1,14 +1,12 @@
 import React, {useRef, useState} from 'react';
-import PropTypes from 'prop-types';
 import SortItem from '../sort-item/sort-item';
 import {SORTS} from '../../const';
-import {changeActiveSort} from '../../store/action';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import useOutsideClick from '../../hooks/use-outside-click';
 import {getActiveSort} from '../../store/ui/selectors';
 
-function SortForm(props) {
-  const {activeSort, changeSort} = props;
+function SortForm() {
+  const activeSort = useSelector(getActiveSort);
   const [isActive, setIsActive] = useState(false);
   const formRef = useRef();
   useOutsideClick(formRef, setIsActive);
@@ -31,8 +29,6 @@ function SortForm(props) {
           <SortItem
             key={sort}
             sort={sort}
-            changeSort={changeSort}
-            activeSort={sort === activeSort}
             setIsActive={setIsActive}
           />
         ))}
@@ -41,19 +37,4 @@ function SortForm(props) {
   );
 }
 
-SortForm.propTypes = {
-  activeSort: PropTypes.string.isRequired,
-  changeSort: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  activeSort: getActiveSort(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  changeSort(sort) {
-    dispatch(changeActiveSort(sort));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SortForm);
+export default SortForm;

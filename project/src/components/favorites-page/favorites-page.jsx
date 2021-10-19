@@ -1,17 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import offerProp from '../app/offer.prop';
 import Header from '../header/header';
 import FavoritesList from '../favorites-list/favorites-list';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import FavoritesListEmpty from '../favorites-list-empty/favorites-list-empty';
 import LoadingWrapper from '../loading-wrapper/loading-wrapper';
 import {getFavorites, getIsDataLoadedFavorites} from '../../store/data/selectors';
 
-function FavoritesPage(props) {
-  const {favorites, isDataLoadedFavorites} = props;
+function FavoritesPage() {
+  const favorites = useSelector(getFavorites);
+  const isDataLoadedFavorites = useSelector(getIsDataLoadedFavorites);
+
   const filterOffers = favorites.filter((offer) => offer.isFavorite);
   const uniqueCities = new Set();
   filterOffers.forEach((offer) => uniqueCities.add(offer.city.name));
@@ -43,14 +43,5 @@ function FavoritesPage(props) {
   );
 }
 
-FavoritesPage.propTypes = {
-  favorites: PropTypes.arrayOf(offerProp).isRequired,
-  isDataLoadedFavorites: PropTypes.bool.isRequired,
-};
 
-const mapStateToProps = (state) => ({
-  favorites: getFavorites(state),
-  isDataLoadedFavorites: getIsDataLoadedFavorites(state),
-});
-
-export default connect(mapStateToProps, null)(FavoritesPage);
+export default FavoritesPage;

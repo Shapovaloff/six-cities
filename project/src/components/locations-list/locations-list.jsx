@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {changeActiveCity} from '../../store/action';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getCity} from '../../store/ui/selectors';
 
 function LocationsList(props) {
-  const {locations, city, changeCity} = props;
+  const {locations} = props;
+  const dispatch = useDispatch();
+  const city = useSelector(getCity);
 
   return (
     <ul className="locations__list tabs__list">
@@ -14,7 +16,7 @@ function LocationsList(props) {
           key={location}
           className="locations__item"
           onClick={() => {
-            changeCity(location);
+            dispatch(changeActiveCity(location))
           }}
         >
           <a className={`locations__item-link ${city === location && 'tabs__item--active'} tabs__item`} href="#">
@@ -28,18 +30,6 @@ function LocationsList(props) {
 
 LocationsList.propTypes = {
   locations: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  city: PropTypes.string.isRequired,
-  changeCity: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  city: getCity(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  changeCity(city) {
-    dispatch(changeActiveCity(city));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(LocationsList);
+export default LocationsList;

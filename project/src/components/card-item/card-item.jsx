@@ -5,19 +5,20 @@ import {getRating} from '../../utils';
 import {generatePath, Link} from 'react-router-dom';
 import {AppRoute, buttonType, CardType} from '../../const';
 import {changeActiveCard} from '../../store/action';
-import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import FavoritesButton from '../favorites-button/favorites-button';
 
 function CardItem(props) {
-  const {offer, changeCard, typeCard = CardType.MAIN} = props;
+  const dispatch = useDispatch();
+  const {offer, typeCard = CardType.MAIN} = props;
   const {id, isPremium, rating, isFavorite, previewImage, price, type, title} = offer;
   const imgPreviewWidth = typeCard === CardType.FAVORITES ? '150' : '260';
   const imgPreviewHeight = typeCard === CardType.FAVORITES ? '110' : '200';
 
   return (
     <article
-      onMouseEnter={() => typeCard === CardType.MAIN && changeCard(id)}
-      onMouseLeave={() => typeCard === CardType.MAIN && changeCard(null)}
+      onMouseEnter={() => typeCard === CardType.MAIN && dispatch(changeActiveCard(id))}
+      onMouseLeave={() => typeCard === CardType.MAIN && dispatch(changeActiveCard(null))}
       className={`${typeCard === CardType.MAIN ? `${typeCard}__place-card` : `${typeCard}__card`} place-card`}
     >
       {isPremium && (
@@ -56,13 +57,6 @@ function CardItem(props) {
 CardItem.propTypes = {
   offer: offerProp,
   typeCard: PropTypes.string,
-  changeCard: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  changeCard(id) {
-    dispatch(changeActiveCard(id));
-  },
-});
-
-export default connect(null, mapDispatchToProps)(CardItem);
+export default CardItem;

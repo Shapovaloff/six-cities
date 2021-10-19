@@ -1,10 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Header from '../header/header';
-import offerProp from '../app/offer.prop';
 import LocationsList from '../locations-list/locations-list';
 import {Locations} from '../../const';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import MainCities from '../main-cities/main-cities';
 import MainCitiesEmpty from '../main-cities-empty/main-cities-empty';
 import {getSortOffers} from '../../utils';
@@ -12,8 +10,12 @@ import LoadingWrapper from '../loading-wrapper/loading-wrapper';
 import {getIsDataLoadedOffers, getOffers} from '../../store/data/selectors';
 import {getActiveSort, getCity} from '../../store/ui/selectors';
 
-function MainPage(props) {
-  const {offers, city, activeSort, isDataLoadedOffers} = props;
+function MainPage() {
+  const offers = useSelector(getOffers);
+  const activeSort = useSelector(getActiveSort);
+  const city = useSelector(getCity);
+  const isDataLoadedOffers = useSelector(getIsDataLoadedOffers);
+
   const locations = Object.values(Locations);
   const filterOffers = offers.filter((offer) => offer.city.name === city);
   const sortOffers = getSortOffers(activeSort, filterOffers);
@@ -39,18 +41,4 @@ function MainPage(props) {
   );
 }
 
-MainPage.propTypes = {
-  offers: PropTypes.arrayOf(offerProp).isRequired,
-  city: PropTypes.string.isRequired,
-  activeSort: PropTypes.string.isRequired,
-  isDataLoadedOffers: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  offers: getOffers(state),
-  city: getCity(state),
-  activeSort: getActiveSort(state),
-  isDataLoadedOffers: getIsDataLoadedOffers(state),
-});
-
-export default connect(mapStateToProps, null)(MainPage);
+export default MainPage;
